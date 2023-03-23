@@ -17,28 +17,28 @@ int main() {
     // 랜덤함수
     srand((unsigned)time(NULL));
 
-    // initialize game map
+    // 맵 초기화
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {
             map[i][j] = '.';
         }
     }
 
-    // set player's position
+    // 플레이어 스폰
     x = rand() % SIZE;
     y = rand() % SIZE;
     map[x][y] = 'P';
 
-    // set seeker's position
+    // 술래 스폰
     do {
         sx = rand() % SIZE;
         sy = rand() % SIZE;
     } while (sx == x && sy == y);
     map[sx][sy] = 'S';
 
-    // game loop
+    // 루프
     while (1) {
-        // print game map
+        // 게임 출력
         printf("\n");
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
@@ -47,13 +47,13 @@ int main() {
             printf("\n");
         }
 
-        // check if seeker found player
+        // 술래포착시
         if (x == sx && y == sy) {
             found = 1;
             break;
         }
 
-        // update player's position
+        // 플레이어 업데이트
         map[x][y] = '.';
         input = _getch();//키를 받아줌
         switch (input) {
@@ -80,7 +80,7 @@ int main() {
         }
         map[x][y] = 'P';
 
-        // update seeker's position
+        // 술래 업데이트
         map[sx][sy] = '.';
         if (sx < x)
         {
@@ -100,10 +100,10 @@ int main() {
         }
         map[sx][sy] = 'S';
 
-        // increase move count
+        // 움직임 카운트
         cnt++;
 
-        // check move count
+        // 카운트 체크
         if (cnt == 50) {
             found = 0;
             break;
@@ -111,7 +111,7 @@ int main() {
         system("CLS");
     }
 
-    // print game result
+    // 결과출력
     if (found)
     {
         printf("\nYou lose!\n");
