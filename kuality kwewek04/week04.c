@@ -7,21 +7,20 @@
 #define SIZE 10
 
 int main() {
-    int x, y;  // player's position
-    int sx, sy; // seeker's position
-    char map[SIZE][SIZE]; // game map
-    char input; // player input
+    int x, y;  // 플레이어 위치
+    int sx, sy; // 술래 위치
+    char map[SIZE][SIZE]; // 맵
+    char input; // 키 입력
     int found; // seeker found flag
-    int cnt = 0; // count number of moves
-    int key = 0;
+    int cnt = 0; // 움직임을 카운트
 
-    // initialize random seed
-    srand(time(NULL));
+    // 랜덤함수
+    srand((unsigned)time(NULL));
 
     // initialize game map
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {
-            map[i][j] = '. ';
+            map[i][j] = '.';
         }
     }
 
@@ -54,12 +53,9 @@ int main() {
             break;
         }
 
-        // get player input
-        printf("Move: ");
-        scanf_s(" %c", &input);
-
         // update player's position
         map[x][y] = '.';
+        input = _getch();//키를 받아줌
         switch (input) {
         case 'w': x--; break;
         case 's': x++; break;
